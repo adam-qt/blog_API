@@ -12,7 +12,6 @@ class Post(models.Model):
         on_delete=models.CASCADE)
     objects = models.Manager()
 
-
     class Meta:
         ordering = ['id']
         indexes = [
@@ -26,10 +25,15 @@ class Post(models.Model):
 class Comment(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     text = models.TextField(blank=False)
-    owner = models.ForeignKey('auth.User', related_name='comments', on_delete=models.CASCADE)
-    post = models.ForeignKey('Post', on_delete=models.CASCADE, related_name='comments')
+    owner = models.ForeignKey(
+        'auth.User',
+        related_name='comments',
+        on_delete=models.CASCADE)
+    post = models.ForeignKey(
+        'Post',
+        on_delete=models.CASCADE,
+        related_name='comments')
     objects = models.Manager()
 
     class Meta:
         ordering = ['created']
-
