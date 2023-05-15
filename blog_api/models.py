@@ -12,6 +12,7 @@ class Post(models.Model):
         on_delete=models.CASCADE)
     objects = models.Manager()
 
+
     class Meta:
         ordering = ['id']
         indexes = [
