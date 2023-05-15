@@ -1,11 +1,15 @@
 from django.contrib import admin
-from .models import Post, Comment
+from .models import Post, Comment, Categories
 
 # admin.site.register(Post)
 
 
 class CommentInline(admin.TabularInline):
     model = Comment
+
+
+class CategoryInLine(admin.TabularInline):
+    model = Categories
 
 
 @admin.register(Post)
@@ -20,3 +24,8 @@ class PostAdmin(admin.ModelAdmin):
 class CommentAdmin(admin.ModelAdmin):
     pass
 # Register your models here.
+
+
+@admin.register(Categories)
+class CategoriesAdmin(admin.ModelAdmin):
+    search_fields = ['text', 'owner']
